@@ -850,13 +850,13 @@ body {
   border: 2px solid var(--accent-color);
   box-shadow: 0 0 50px var(--border-glow);
   position: relative;
-  max-height: 90vh;
+  max-height: 92vh;
   overflow-y: auto;
 }
 
 .story-modal-close {
   position: absolute;
-  top: 15px;
+  top: 10px;
   right: 20px;
   background: none;
   border: none;
@@ -997,4 +997,5 @@ body {
     width: 100px;
     height: 160px;
   }
+
 }
