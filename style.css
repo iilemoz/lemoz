@@ -850,7 +850,7 @@ body {
   border: 2px solid var(--accent-color);
   box-shadow: 0 0 50px var(--border-glow);
   position: relative;
-  max-height: 92vh;
+  max-height: 95vh;
   overflow-y: auto;
 }
 
@@ -999,3 +999,4 @@ body {
   }
 
 }
+
