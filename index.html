@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal Profile of Ahmed">
+    <title>Ahmed</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Stories Section -->
+        <div class="story-section">
+            <div class="story-content">
+                <div class="story-header">
+                </div>
+                <div class="stories-container" id="storiesContainer">
+                    <!-- Add Story Button (shown only when admin) -->
+                    <!-- Existing stories will be added here dynamically -->
+                </div>
+                <div class="scroll-indicator left" id="storyNavLeft" onclick="scrollStories('left')">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
+                <div class="scroll-indicator" id="storyNavRight" onclick="scrollStories('right')">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-container">
+            <div class="profile-border">
+                <div class="profile-content">
+                    <img src="https://img.alfrsantv.com/img/f176356891083911.jpg" alt="Profile Picture"
+                        class="profile-pic">
+                    <div class="overlay"></div>
+                    <div class="shine"></div>
+                </div>
+            </div>
+            <div class="status-indicator" id="statusIndicator">
+                <div class="status-icon"></div>
+            </div>
+            <div class="particles">
+                <!-- Particles will be dynamically generated -->
+            </div>
+        </div>
+        <h1 class="username">Ahmed</h1>
+        <div class="social-links">
+            <a href="https://www.facebook.com/ahmed.s6yed/" target="_blank" class="social-link">Facebook</a>
+            <a href="https://github.com/iilemoz" target="_blank" class="social-link">GitHub</a>
+        </div>
+    </div>
+
+    <!-- Story Modal -->
+    <div class="story-modal" id="storyModal">
+        <div class="story-modal-content">
+            <button class="story-modal-close" onclick="closeStoryModal()">
+                <i class="fa-solid fa-times"></i>
+            </button>
+            <h3 style="color: var(--accent-color); margin-bottom: 20px; text-align: center;">Add New Story</h3>
+            <form class="story-form" id="storyForm">
+                <div class="story-form-group">
+                    <label class="story-form-label">Story Title (optional)</label>
+                    <input type="text" class="story-form-input" id="storyTitle" placeholder="Enter story title...">
+                </div>
+                <div class="story-form-group">
+                    <label class="story-form-label">Story Content (optional)</label>
+                    <textarea class="story-form-textarea" id="storyContent"
+                        placeholder="Share your story..."></textarea>
+                </div>
+                <div class="story-form-group">
+                    <label class="story-form-label">Story Image (optional)</label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="file" class="story-form-file" id="storyImageFile" accept="image/*"
+                            style="display: none;">
+                        <button type="button" onclick="document.getElementById('storyImageFile').click()"
+                            class="upload-btn">
+                            <i class="fa-solid fa-upload"></i> Upload Image
+                        </button>
+                        <span id="imageFileName" class="file-name"></span>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <label class="story-form-label" style="font-size: 0.9rem;">Or use Image URL:</label>
+                        <input type="url" class="story-form-input" id="storyImage"
+                            placeholder="https://example.com/image.jpg">
+                    </div>
+                </div>
+                <div class="story-form-group">
+                    <label class="story-form-label">Story Video (optional)</label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="file" class="story-form-file" id="storyVideoFile" accept="video/*"
+                            style="display: none;">
+                        <button type="button" onclick="document.getElementById('storyVideoFile').click()"
+                            class="upload-btn">
+                            <i class="fa-solid fa-upload"></i> Upload Video
+                        </button>
+                        <span id="videoFileName" class="file-name"></span>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <label class="story-form-label" style="font-size: 0.9rem;">Or use Video URL:</label>
+                        <input type="url" class="story-form-input" id="storyVideo"
+                            placeholder="https://www.youtube.com/watch?v=... or direct video URL">
+                        <small style="color: #aaa; font-size: 0.9rem; margin-top: 5px; display: block;">
+                            <i class="fa-solid fa-info-circle"></i> Supports YouTube, YouTube Shorts, and direct video
+                            URLs
+                        </small>
+                    </div>
+                </div>
+                <button type="submit" class="story-form-submit">
+                    <i class="fa-solid fa-paper-plane"></i> Share Story
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+
+    <!-- Configuration & Scripts -->
+    <script src="config.js"></script>
+    <script type="module" src="script.js"></script>
+    <script src="stories.js"></script>
+</body>
+
+</html>
