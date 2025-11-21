@@ -139,3 +139,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+// Handle gear icon click for admin login/dashboard access
+function handleGearClick() {
+    // Check if we're already in the stories.js file which has the admin functions
+    if (typeof isAdmin !== 'undefined') {
+        if (isAdmin) {
+            // If already admin, toggle dashboard visibility
+            toggleDashboard();
+        } else {
+            // If not admin, show login
+            showAdminLoginForGear();
+        }
+    } else {
+        // Fallback to login if admin functions aren't available
+        showAdminLoginForGear();
+    }
+}

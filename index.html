@@ -53,65 +53,127 @@
         </div>
     </div>
 
+    <!-- Admin Gear Icon - Moved to bottom right of page -->
+    <div class="admin-gear" onclick="handleGearClick()" title="Admin Settings">
+        <i class="fa-solid fa-gear"></i>
+    </div>
+
     <!-- Story Modal -->
     <div class="story-modal" id="storyModal">
         <div class="story-modal-content">
-            <button class="story-modal-close" onclick="closeStoryModal()">
-                <i class="fa-solid fa-times"></i>
-            </button>
-            <h3 style="color: var(--accent-color); margin-bottom: 20px; text-align: center;">Add New Story</h3>
-            <form class="story-form" id="storyForm">
-                <div class="story-form-group">
-                    <label class="story-form-label">Story Title (optional)</label>
-                    <input type="text" class="story-form-input" id="storyTitle" placeholder="Enter story title...">
-                </div>
-                <div class="story-form-group">
-                    <label class="story-form-label">Story Content (optional)</label>
-                    <textarea class="story-form-textarea" id="storyContent"
-                        placeholder="Share your story..."></textarea>
-                </div>
-                <div class="story-form-group">
-                    <label class="story-form-label">Story Image (optional)</label>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="file" class="story-form-file" id="storyImageFile" accept="image/*"
-                            style="display: none;">
-                        <button type="button" onclick="document.getElementById('storyImageFile').click()"
-                            class="upload-btn">
-                            <i class="fa-solid fa-upload"></i> Upload Image
-                        </button>
-                        <span id="imageFileName" class="file-name"></span>
-                    </div>
-                    <div style="margin-top: 10px;">
-                        <label class="story-form-label" style="font-size: 0.9rem;">Or use Image URL:</label>
-                        <input type="url" class="story-form-input" id="storyImage"
-                            placeholder="https://example.com/image.jpg">
-                    </div>
-                </div>
-                <div class="story-form-group">
-                    <label class="story-form-label">Story Video (optional)</label>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <input type="file" class="story-form-file" id="storyVideoFile" accept="video/*"
-                            style="display: none;">
-                        <button type="button" onclick="document.getElementById('storyVideoFile').click()"
-                            class="upload-btn">
-                            <i class="fa-solid fa-upload"></i> Upload Video
-                        </button>
-                        <span id="videoFileName" class="file-name"></span>
-                    </div>
-                    <div style="margin-top: 10px;">
-                        <label class="story-form-label" style="font-size: 0.9rem;">Or use Video URL:</label>
-                        <input type="url" class="story-form-input" id="storyVideo"
-                            placeholder="https://www.youtube.com/watch?v=... or direct video URL">
-                        <small style="color: #aaa; font-size: 0.9rem; margin-top: 5px; display: block;">
-                            <i class="fa-solid fa-info-circle"></i> Supports YouTube, YouTube Shorts, and direct video
-                            URLs
-                        </small>
-                    </div>
-                </div>
-                <button type="submit" class="story-form-submit">
-                    <i class="fa-solid fa-paper-plane"></i> Share Story
+            <div class="story-modal-content-form">
+                <button class="story-modal-close" onclick="closeStoryModal()">
+                    <i class="fa-solid fa-times"></i>
                 </button>
-            </form>
+                <h3 style="color: var(--accent-color); margin-bottom: 20px; text-align: center;">Add New Story</h3>
+                <form class="story-form" id="storyForm">
+                    <div class="story-form-group">
+                        <label class="story-form-label">Story Title (optional)</label>
+                        <input type="text" class="story-form-input" id="storyTitle" placeholder="Enter story title...">
+                    </div>
+                    <div class="story-form-group">
+                        <label class="story-form-label">Story Content (optional)</label>
+                        <textarea class="story-form-textarea" id="storyContent"
+                            placeholder="Share your story..."></textarea>
+                    </div>
+                    <div class="story-form-group">
+                        <label class="story-form-label">Story Image (optional)</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="file" class="story-form-file" id="storyImageFile" accept="image/*"
+                                style="display: none;">
+                            <button type="button" onclick="document.getElementById('storyImageFile').click()"
+                                class="upload-btn">
+                                <i class="fa-solid fa-upload"></i> Upload Image
+                            </button>
+                            <span id="imageFileName" class="file-name"></span>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <label class="story-form-label" style="font-size: 0.9rem;">Or use Image URL:</label>
+                            <input type="url" class="story-form-input" id="storyImage"
+                                placeholder="https://example.com/image.jpg">
+                        </div>
+                    </div>
+                    <div class="story-form-group">
+                        <label class="story-form-label">Story Video (optional)</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="file" class="story-form-file" id="storyVideoFile" accept="video/*"
+                                style="display: none;">
+                            <button type="button" onclick="document.getElementById('storyVideoFile').click()"
+                                class="upload-btn">
+                                <i class="fa-solid fa-upload"></i> Upload Video
+                            </button>
+                            <span id="videoFileName" class="file-name"></span>
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <label class="story-form-label" style="font-size: 0.9rem;">Or use Video URL:</label>
+                            <input type="url" class="story-form-input" id="storyVideo"
+                                placeholder="https://www.youtube.com/watch?v=... or direct video URL">
+                            <small style="color: #aaa; font-size: 0.9rem; margin-top: 5px; display: block;">
+                                <i class="fa-solid fa-info-circle"></i> Supports YouTube, YouTube Shorts, and direct video
+                                URLs
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <!-- Thumbnail Generation Status -->
+                    <div class="story-form-group" id="thumbnailGenerationStatus" style="display: none; margin-top: 15px; padding: 12px; border-radius: 8px; background: rgba(187, 134, 252, 0.1); border: 1px solid rgba(187, 134, 252, 0.3);">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fa-solid fa-images" style="color: var(--accent-color); font-size: 1.2rem;"></i>
+                            <span id="thumbnailStatusText" style="color: var(--text-primary);">Generating thumbnail from video...</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="story-form-submit">
+                        <i class="fa-solid fa-paper-plane"></i> Share Story
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard (Hidden by default, shown only when admin is logged in) -->
+    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <div class="dashboard-container">
+            <div class="dashboard-container-content">
+                <div class="dashboard-header">
+                    <h2><i class="fa-solid fa-user-shield"></i> Admin Dashboard</h2>
+                    <div class="dashboard-header-actions">
+                        <button class="dashboard-logout" onclick="showLogoutConfirm()" title="Logout">
+                            <i class="fa-solid fa-sign-out-alt"></i>
+                        </button>
+                        <button class="dashboard-close" onclick="toggleDashboard()">
+                            <i class="fa-solid fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalStories">0</div>
+                        <div class="stat-label">Total Stories</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalViews">0</div>
+                        <div class="stat-label">Total Views</div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-actions">
+                    <button class="dashboard-btn" onclick="openStoryModalFromDashboard()">
+                        <i class="fa-solid fa-plus"></i> Add New Story
+                    </button>
+                    <button class="dashboard-btn" onclick="loadStories()">
+                        <i class="fa-solid fa-sync"></i> Refresh Data
+                    </button>
+                </div>
+                
+                <div class="recent-stories">
+                    <h3><i class="fa-solid fa-history"></i> Recent Stories</h3>
+                    <div class="stories-list" id="recentStoriesList">
+                        <!-- Stories will be loaded here -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
