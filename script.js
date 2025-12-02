@@ -254,3 +254,110 @@ function handleGearClick() {
         showAdminLoginForGear();
     }
 }
+
+// Theme Switcher Functions
+function toggleThemeMenu() {
+    const themeMenu = document.getElementById('themeMenu');
+    if (themeMenu) {
+        themeMenu.classList.toggle('active');
+    }
+}
+
+function changeTheme(themeName) {
+    // Remove all theme attributes
+    document.documentElement.removeAttribute('data-theme');
+    
+    // Apply new theme
+    if (themeName !== 'default') {
+        document.documentElement.setAttribute('data-theme', themeName);
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('selectedTheme', themeName);
+    
+    // Update active state in menu
+    const themeOptions = document.querySelectorAll('.theme-option');
+    themeOptions.forEach(option => {
+        option.classList.remove('active');
+        if (option.getAttribute('data-theme') === themeName) {
+            option.classList.add('active');
+        }
+    });
+    
+    // Update meta theme-color
+    const themeColors = {
+        'default': '#7c3aed',
+        'blue': '#3b82f6',
+        'green': '#10b981',
+        'red': '#ef4444',
+        'orange': '#f59e0b',
+        'dark': '#ffffff'
+    };
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', themeColors[themeName] || themeColors['default']);
+    }
+    
+    // Close theme menu after selection
+    const themeMenu = document.getElementById('themeMenu');
+    if (themeMenu) {
+        setTimeout(() => {
+            themeMenu.classList.remove('active');
+        }, 300);
+    }
+}
+
+// Initialize theme on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Load saved theme or use default
+    const savedTheme = localStorage.getItem('selectedTheme') || 'default';
+    
+    // Apply theme without closing menu (since menu isn't open yet)
+    document.documentElement.removeAttribute('data-theme');
+    if (savedTheme !== 'default') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+    
+    // Update meta theme-color
+    const themeColors = {
+        'default': '#7c3aed',
+        'blue': '#3b82f6',
+        'green': '#10b981',
+        'red': '#ef4444',
+        'orange': '#f59e0b',
+        'dark': '#ffffff'
+    };
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', themeColors[savedTheme] || themeColors['default']);
+    }
+    
+    // Mark active theme in menu
+    setTimeout(() => {
+        const themeOptions = document.querySelectorAll('.theme-option');
+        themeOptions.forEach(option => {
+            option.classList.remove('active');
+            if (option.getAttribute('data-theme') === savedTheme) {
+                option.classList.add('active');
+            }
+        });
+    }, 100);
+    
+    // Close theme menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const themeMenu = document.getElementById('themeMenu');
+        const themeSwitcher = document.querySelector('.theme-switcher');
+        
+        if (themeMenu && themeSwitcher) {
+            if (!themeMenu.contains(event.target) && 
+                !themeSwitcher.contains(event.target) && 
+                themeMenu.classList.contains('active')) {
+                themeMenu.classList.remove('active');
+            }
+        }
+    });
+});
+
+// Make functions globally accessible
+window.toggleThemeMenu = toggleThemeMenu;
+window.changeTheme = changeTheme;

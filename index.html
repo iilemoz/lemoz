@@ -16,6 +16,47 @@
 </head>
 
 <body>
+    <!-- Theme Switcher -->
+    <div class="theme-switcher" onclick="toggleThemeMenu()" title="Change Theme">
+        <i class="fa-solid fa-palette"></i>
+    </div>
+    
+    <!-- Theme Menu -->
+    <div class="theme-menu" id="themeMenu">
+        <div class="theme-menu-header">
+            <h3><i class="fa-solid fa-palette"></i> Choose Theme</h3>
+            <button class="theme-menu-close" onclick="toggleThemeMenu()">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        <div class="theme-options">
+            <div class="theme-option" data-theme="default" onclick="changeTheme('default')">
+                <div class="theme-preview default-theme"></div>
+                <span>Purple Cyan</span>
+            </div>
+            <div class="theme-option" data-theme="blue" onclick="changeTheme('blue')">
+                <div class="theme-preview blue-theme"></div>
+                <span>Ocean Blue</span>
+            </div>
+            <div class="theme-option" data-theme="green" onclick="changeTheme('green')">
+                <div class="theme-preview green-theme"></div>
+                <span>Emerald Green</span>
+            </div>
+            <div class="theme-option" data-theme="red" onclick="changeTheme('red')">
+                <div class="theme-preview red-theme"></div>
+                <span>Rose Red</span>
+            </div>
+            <div class="theme-option" data-theme="orange" onclick="changeTheme('orange')">
+                <div class="theme-preview orange-theme"></div>
+                <span>Sunset Orange</span>
+            </div>
+            <div class="theme-option" data-theme="dark" onclick="changeTheme('dark')">
+                <div class="theme-preview dark-theme"></div>
+                <span>Dark Minimal</span>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Stories Section -->
         <div class="story-section">
@@ -192,6 +233,5 @@
     <script type="module" src="script.js"></script>
     <script src="stories.js"></script>
 </body>
-
 
 </html>
