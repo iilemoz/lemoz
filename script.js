@@ -1,11 +1,82 @@
 import { IlluxatAPI } from './illuxat-api.js';
 
+// Define image viewer functions first so they're available
+function openImageViewer(imageSrc) {
+    try {
+        // Create modal if it doesn't exist
+        let imageModal = document.getElementById('imageViewerModal');
+        if (!imageModal) {
+            imageModal = document.createElement('div');
+            imageModal.id = 'imageViewerModal';
+            imageModal.className = 'image-viewer-modal';
+            imageModal.innerHTML = `
+                <div class="image-viewer-content">
+                    <button class="image-viewer-close" onclick="closeImageViewer()" aria-label="Close">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                    <div class="image-viewer-wrapper">
+                        <div class="image-viewer-container">
+                            <img src="" alt="Profile Picture" class="image-viewer-img" id="imageViewerImg">
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(imageModal);
+            
+            // Close on background click
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal || e.target.classList.contains('image-viewer-wrapper')) {
+                    closeImageViewer();
+                }
+            });
+            
+            // Close on Escape key
+            const escapeHandler = (e) => {
+                if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+                    closeImageViewer();
+                }
+            };
+            document.addEventListener('keydown', escapeHandler);
+        }
+        
+        // Set image source and show modal
+        const img = document.getElementById('imageViewerImg');
+        if (!img) {
+            console.error('Image element not found in modal');
+            return;
+        }
+        img.src = imageSrc;
+        imageModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    } catch (error) {
+        console.error('Error in openImageViewer:', error);
+    }
+}
+
+function closeImageViewer() {
+    const imageModal = document.getElementById('imageViewerModal');
+    if (imageModal) {
+        imageModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Make functions globally accessible
+window.openImageViewer = openImageViewer;
+window.closeImageViewer = closeImageViewer;
+
 // Add interactive effects to the profile picture
 document.addEventListener('DOMContentLoaded', function() {
     const profileContainer = document.querySelector('.profile-container');
     const particlesContainer = document.querySelector('.particles');
     const username = document.querySelector('.username');
     const profilePic = document.querySelector('.profile-pic');
+    
+    // Check if elements are found
+    if (!profilePic) {
+        console.error('Profile picture not found!');
+        return;
+    }
     
     // Initialize status indicator
     const statusIndicator = document.getElementById('statusIndicator');
@@ -85,17 +156,44 @@ document.addEventListener('DOMContentLoaded', function() {
         profileContainer.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
     });
     
-    // Add click effect
-    profileContainer.addEventListener('click', () => {
-        username.classList.add('name-pulse');
-        
-        // Add pulse effect to profile picture
-        profilePic.classList.add('pic-pulse');
-        
-        setTimeout(() => {
-            username.classList.remove('name-pulse');
-            profilePic.classList.remove('pic-pulse');
-        }, 1000);
+    // Add click handler to profile image to open image viewer (Facebook-style)
+    profilePic.style.pointerEvents = 'auto';
+    profilePic.style.zIndex = '10';
+    profilePic.style.cursor = 'pointer';
+    
+    // Direct click handler
+    profilePic.onclick = function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        const imageSrc = this.src || this.getAttribute('src');
+        if (imageSrc) {
+            openImageViewer(imageSrc);
+        }
+        return false;
+    };
+    
+    // Also add event listener as backup
+    profilePic.addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        const imageSrc = this.src || this.getAttribute('src');
+        if (imageSrc) {
+            openImageViewer(imageSrc);
+        }
+    }, false);
+    
+    // Add click effect to profile container (but not the image itself)
+    profileContainer.addEventListener('click', (e) => {
+        // Only trigger pulse if clicking on container, not the image
+        if (e.target !== profilePic && !profilePic.contains(e.target)) {
+            username.classList.add('name-pulse');
+            profilePic.classList.add('pic-pulse');
+            
+            setTimeout(() => {
+                username.classList.remove('name-pulse');
+                profilePic.classList.remove('pic-pulse');
+            }, 1000);
+        }
     });
     
     // Add click effect to username directly

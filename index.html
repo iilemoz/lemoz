@@ -3,8 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Personal Profile of Ahmed">
+    <meta name="theme-color" content="#7c3aed">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Ahmed</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -65,7 +70,7 @@
                 <button class="story-modal-close" onclick="closeStoryModal()">
                     <i class="fa-solid fa-times"></i>
                 </button>
-                <h3 style="color: var(--accent-color); margin-bottom: 20px; text-align: center;">Add New Story</h3>
+                <h3 style="background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; text-align: center; font-weight: 800; font-size: 1.8rem;">Add New Story</h3>
                 <form class="story-form" id="storyForm">
                     <div class="story-form-group">
                         <label class="story-form-label">Story Title (optional)</label>

@@ -48,10 +48,8 @@ function loadRecentStories() {
     return;
   }
   
-  // Show up to 5 most recent stories
-  const recentStories = stories.slice(0, 5);
-  
-  recentStories.forEach((story, index) => {
+  // Show all stories
+  stories.forEach((story, index) => {
     const storyElement = createDashboardStoryElement(story, index);
     storiesList.appendChild(storyElement);
   });
