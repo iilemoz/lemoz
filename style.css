@@ -765,10 +765,10 @@ body::before {
 /* Theme Switcher */
 .theme-switcher {
   position: fixed;
-  top: 30px;
-  right: 30px;
-  top: calc(30px + env(safe-area-inset-top));
-  right: calc(30px + env(safe-area-inset-right));
+  bottom: 30px;
+  left: 30px;
+  bottom: calc(30px + env(safe-area-inset-bottom));
+  left: calc(30px + env(safe-area-inset-left));
   width: 50px;
   height: 50px;
   background: var(--glass-bg);
@@ -816,10 +816,10 @@ body::before {
 /* Theme Menu */
 .theme-menu {
   position: fixed;
-  top: 90px;
-  right: 30px;
-  top: calc(90px + env(safe-area-inset-top));
-  right: calc(30px + env(safe-area-inset-right));
+  bottom: 90px;
+  left: 30px;
+  bottom: calc(90px + env(safe-area-inset-bottom));
+  left: calc(30px + env(safe-area-inset-left));
   width: 320px;
   max-width: calc(100vw - 60px);
   background: var(--glass-bg);
@@ -834,7 +834,7 @@ body::before {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-20px) scale(0.95);
+  transform: translateY(20px) scale(0.95);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
@@ -2164,14 +2164,14 @@ body::before {
   .theme-switcher {
     width: 45px;
     height: 45px;
-    top: calc(25px + env(safe-area-inset-top));
-    right: calc(25px + env(safe-area-inset-right));
+    bottom: calc(25px + env(safe-area-inset-bottom));
+    left: calc(25px + env(safe-area-inset-left));
     font-size: 1.2rem;
   }
 
   .theme-menu {
-    top: calc(80px + env(safe-area-inset-top));
-    right: calc(25px + env(safe-area-inset-right));
+    bottom: calc(80px + env(safe-area-inset-bottom));
+    left: calc(25px + env(safe-area-inset-left));
     width: 300px;
   }
 
@@ -2246,14 +2246,14 @@ body::before {
   .theme-switcher {
     width: 45px;
     height: 45px;
-    top: calc(20px + env(safe-area-inset-top));
-    right: calc(20px + env(safe-area-inset-right));
+    bottom: calc(20px + env(safe-area-inset-bottom));
+    left: calc(20px + env(safe-area-inset-left));
     font-size: 1.2rem;
   }
 
   .theme-menu {
-    top: calc(75px + env(safe-area-inset-top));
-    right: calc(20px + env(safe-area-inset-right));
+    bottom: calc(75px + env(safe-area-inset-bottom));
+    left: calc(20px + env(safe-area-inset-left));
     width: 280px;
   }
 
@@ -2348,14 +2348,14 @@ body::before {
   .theme-switcher {
     width: 42px;
     height: 42px;
-    top: calc(18px + env(safe-area-inset-top));
-    right: calc(18px + env(safe-area-inset-right));
+    bottom: calc(18px + env(safe-area-inset-bottom));
+    left: calc(18px + env(safe-area-inset-left));
     font-size: 1.1rem;
   }
 
   .theme-menu {
-    top: calc(70px + env(safe-area-inset-top));
-    right: calc(18px + env(safe-area-inset-right));
+    bottom: calc(70px + env(safe-area-inset-bottom));
+    left: calc(18px + env(safe-area-inset-left));
     width: 260px;
   }
 
@@ -2484,14 +2484,14 @@ body::before {
   .theme-switcher {
     width: 40px;
     height: 40px;
-    top: calc(15px + env(safe-area-inset-top));
-    right: calc(15px + env(safe-area-inset-right));
+    bottom: calc(15px + env(safe-area-inset-bottom));
+    left: calc(15px + env(safe-area-inset-left));
     font-size: 1rem;
   }
 
   .theme-menu {
-    top: calc(65px + env(safe-area-inset-top));
-    right: calc(15px + env(safe-area-inset-right));
+    bottom: calc(65px + env(safe-area-inset-bottom));
+    left: calc(15px + env(safe-area-inset-left));
     width: calc(100vw - 30px);
     max-width: 280px;
   }
@@ -2647,14 +2647,14 @@ body::before {
   .theme-switcher {
     width: 38px;
     height: 38px;
-    top: calc(12px + env(safe-area-inset-top));
-    right: calc(12px + env(safe-area-inset-right));
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    left: calc(12px + env(safe-area-inset-left));
     font-size: 0.95rem;
   }
 
   .theme-menu {
-    top: calc(60px + env(safe-area-inset-top));
-    right: calc(12px + env(safe-area-inset-right));
+    bottom: calc(60px + env(safe-area-inset-bottom));
+    left: calc(12px + env(safe-area-inset-left));
     width: calc(100vw - 24px);
     max-width: 260px;
   }
