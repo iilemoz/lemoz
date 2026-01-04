@@ -236,6 +236,35 @@ document.addEventListener('DOMContentLoaded', function() {
             statusIcon.classList.add('offline');
         }
     }
+    
+    // Automatic Profile Picture Switcher with Crossfade Effect
+    const profileImages = [
+        'https://img.alfrsantv.com/img/f176356891083911.jpg',
+        'https://img.alfrsantv.com/img/f176746659232911.jpg'
+    ];
+    
+    let currentImageIndex = 0;
+    
+    // Function to switch profile picture with crossfade effect
+    function switchProfilePicture() {
+        // Move to next image
+        currentImageIndex = (currentImageIndex + 1) % profileImages.length;
+        
+        // Add fade-out class
+        profilePic.style.opacity = '0';
+        profilePic.style.transition = 'opacity 0.8s ease-in-out';
+        
+        // Change image source after fade-out
+        setTimeout(() => {
+            profilePic.src = profileImages[currentImageIndex];
+            
+            // Fade-in with new image
+            profilePic.style.opacity = '1';
+        }, 800);
+    }
+    
+    // Start automatic switching every 3 seconds
+    setInterval(switchProfilePicture, 3000);
 });
 
 // Handle gear icon click for admin login/dashboard access
